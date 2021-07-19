@@ -3,7 +3,8 @@ from typing import Optional
 import fastapi
 import uvicorn
 
-api = fastapi.FastAPI() 
+api = fastapi.FastAPI()
+
 
 @api.get('/')
 def index():
@@ -15,7 +16,8 @@ def index():
             "<div>" \
             "</body>" \
             "</html>"
-    return  fastapi.responses.HTMLResponse(content=body)
+    return fastapi.responses.HTMLResponse(content=body)
+
 
 @api.get('/api/calculate')
 def calculate(x: int, y: int, z: Optional[int] = None):
@@ -24,7 +26,7 @@ def calculate(x: int, y: int, z: Optional[int] = None):
             content='{"ERROR: Z cannot be zero"}',
             media_type="application/json",
             status_code=400)
-    
+
     value = x + y
 
     if z is not None:
@@ -35,6 +37,7 @@ def calculate(x: int, y: int, z: Optional[int] = None):
         y: y,
         z: z,
         'value': value
-    }   
+    }
+
 
 uvicorn.run(api, port=8080, host="127.0.0.1", log_level="info")
