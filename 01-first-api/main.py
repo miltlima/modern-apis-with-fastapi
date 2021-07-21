@@ -6,6 +6,7 @@ import uvicorn
 api = fastapi.FastAPI()
 
 
+# get the index html for the first api
 @api.get('/')
 def index():
     body = "<html" \
