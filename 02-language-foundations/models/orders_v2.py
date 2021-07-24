@@ -1,5 +1,5 @@
 import datetime
-from typing import Optional
+from typing import List, Optional
 from pydantic import BaseModel
 
 order_json = {
@@ -12,8 +12,10 @@ order_json = {
 class Order(BaseModel):
     item_id: int
     created_date: Optional[datetime.datetime]
-    pages_visited: list[int]
+    pages_visited: Optional[List[int]] = []
     price: float
+
     
 o = Order(**order_json)
 print(o)
+print(o.item_id)
